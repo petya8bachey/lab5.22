@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,6 +15,18 @@ public class MyList {
     }
     public MyList() {
         clear();
+    }
+    public void rehash(int M) {
+        MyList local = new MyList(M);
+        for (int i = 0; i < this.M; i++) {
+            Basket basket = list.get(i);
+            if (basket != null) {
+                for (Basket iterator: basket.toArray()) {
+                    local.add(iterator.value);
+                }
+            }
+        }
+        this.list = local.list;
     }
     public void clear() {
         for (int i = 0; i < M; i++) {
@@ -45,8 +56,8 @@ public class MyList {
             basket.delete(value);
         }
     }
-    public Basket search(long value) {
-        return list.get(hash(value)).search(value);
+    public Basket search(int key) {
+        return list.get(key);
     }
 
     public int hash(long phone) {
@@ -72,16 +83,6 @@ public class MyList {
             builder.append("]\n");
             return builder.toString();
         }
-        public Basket search(long value) {
-            Basket iterator = this;
-            while (iterator != null) {
-                if (iterator.value == value) {
-                    return iterator;
-                }
-                iterator = iterator.next;
-            }
-            return null;
-        }
         public void delete(long value) {
             Basket iterator = this;
             while (iterator != null && iterator.next != null) {
@@ -90,6 +91,15 @@ public class MyList {
                 }
                 iterator = iterator.next;
             }
+        }
+        public ArrayList<Basket> toArray() {
+            ArrayList<Basket> baskets = new ArrayList<>();
+            Basket iterator = this;
+            while (iterator != null) {
+                baskets.add(iterator);
+                iterator = iterator.next;
+            }
+            return baskets;
         }
     }
 

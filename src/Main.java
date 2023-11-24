@@ -5,18 +5,19 @@ public class Main {
         // функция умножения
         // Метод цепочек
         // Реализовать алгоритмы поиска, вставки, удаления элементов таблицы и распечатки таблицы и метод ре-хэширования таблицы при увеличении размера данных
-        int size = 1000;
+        int size = 10000;
         MyList list = new MyList();
-        long phone = 0;
+        long phone;
         for (int i = 0; i < size; i++) {
             phone = randomPhone();
             list.add(phone);
         }
         System.out.println(list);
         System.out.println(list.collision);
-        System.out.println(list.search(phone));
-        list.delete(phone);
-        System.out.println(list.search(phone));
+        System.out.println(list.search(2));
+        list.rehash(10);
+        System.out.println(list);
+        System.out.println(list.collision);
     }
     public static long randomPhone() {
         Random random = new Random();
