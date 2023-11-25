@@ -1,6 +1,4 @@
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,6 +18,8 @@ public class Main {
 
         System.out.println(list);
         System.out.println(list.search(2));
+        list.delete(24048697491L);
+        list.add(randomPhone());
         list.rehash(10);
         System.out.println(list);
     }
