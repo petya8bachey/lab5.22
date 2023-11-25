@@ -1,23 +1,27 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // Номер телефона
         // функция умножения
         // Метод цепочек
         // Реализовать алгоритмы поиска, вставки, удаления элементов таблицы и распечатки таблицы и метод ре-хэширования таблицы при увеличении размера данных
-        int size = 10000;
         MyList list = new MyList();
-        long phone;
-        for (int i = 0; i < size; i++) {
-            phone = randomPhone();
-            list.add(phone);
+        File file = new File("src/text.txt");
+        Scanner scanner = new Scanner(file);
+
+        while (scanner.hasNextLong()) {
+            list.add(scanner.nextLong());
         }
+
         System.out.println(list);
-        System.out.println(list.collision);
         System.out.println(list.search(2));
         list.rehash(10);
         System.out.println(list);
-        System.out.println(list.collision);
     }
     public static long randomPhone() {
         Random random = new Random();

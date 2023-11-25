@@ -40,7 +40,7 @@ public class MyList {
         if (element == null) {
             list.set(key, new Basket(value));
         } else {
-            while (element.next != null) {
+            while (element.next != null && element.value != value) {
                 element = element.next;
             }
             collision++;
